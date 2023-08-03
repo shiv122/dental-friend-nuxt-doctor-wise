@@ -1,7 +1,8 @@
 <script setup>
 import { useDomainStore } from "~/store/domainData";
 import axios from "axios";
-import { useLoading } from "vue-loading-overlay";
+const VueLoading = require("vue-loading-overlay");
+const { useLoading } = VueLoading;
 const domainStore = useDomainStore();
 const $loading = useLoading({});
 const error = ref(false);
