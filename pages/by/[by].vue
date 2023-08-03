@@ -1,10 +1,10 @@
 <script setup>
 import { useDomainStore } from "~/store/domainData";
 import axios from "axios";
-const VueLoading = require("vue-loading-overlay");
-const { useLoading } = VueLoading;
+// const VueLoading = require("vue-loading-overlay");
+// const { useLoading } = VueLoading;
 const domainStore = useDomainStore();
-const $loading = useLoading({});
+// const $loading = useLoading({});
 const error = ref(false);
 const baseUrl = ref(null);
 const configg = useRuntimeConfig();
@@ -13,9 +13,9 @@ const router = useRouter();
 const by = route.params.by;
 onMounted(async () => {
   baseUrl.value = configg.public.apiBase;
-  const loader = $loading.show({});
+  // const loader = $loading.show({});
   await checkDomainValidity();
-  loader.hide();
+  // loader.hide();
 });
 
 const checkDomainValidity = async () => {
