@@ -1,0 +1,51 @@
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.4s;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  filter: blur(1rem);
+}
+
+
+.vl-shown {
+  overflow: hidden;
+}
+
+.vl-overlay {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  align-items: center;
+  display: none;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.vl-overlay.vl-active {
+  display: flex;
+}
+
+.vl-overlay.vl-full-page {
+  z-index: 9999;
+  position: fixed;
+}
+
+.vl-overlay .vl-background {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: #fff;
+  opacity: 0.5;
+}
+
+.vl-overlay .vl-icon, .vl-parent {
+  position: relative;
+}
+

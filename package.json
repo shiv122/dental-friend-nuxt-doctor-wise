@@ -1,0 +1,41 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "latest",
+    "@nuxtjs/tailwindcss": "^6.8.0",
+    "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
+    "@pinia/nuxt": "^0.4.11",
+    "@types/node": "^18",
+    "@vueuse/nuxt": "^10.2.0",
+    "nuxt": "^3.5.2",
+    "nuxt-headlessui": "^1.1.4",
+    "nuxt-icon": "^0.4.1"
+  },
+  "dependencies": {
+    "@nuxt/http": "^0.6.4",
+    "@pqina/filepond-plugin-image-editor": "^9.0.3",
+    "@pqina/pintura": "^8.60.12",
+    "@pqina/vue-pintura": "^9.0.1",
+    "axios": "^1.4.0",
+    "filepond": "^4.30.4",
+    "filepond-plugin-file-poster": "^2.5.1",
+    "filepond-plugin-file-validate-size": "^2.2.8",
+    "filepond-plugin-file-validate-type": "^1.2.8",
+    "filepond-plugin-image-crop": "^2.0.6",
+    "filepond-plugin-image-edit": "^1.6.3",
+    "filepond-plugin-image-preview": "^4.6.11",
+    "nuxt-start": "^2.17.0",
+    "v-viewer": "^3.0.11",
+    "vue-filepond": "^7.0.3",
+    "vue-loading-overlay": "6.0",
+    "vue-sonner": "^0.3.2"
+  }
+}
