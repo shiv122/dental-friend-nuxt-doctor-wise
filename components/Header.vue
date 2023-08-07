@@ -11,7 +11,7 @@ onMounted(() => {
     ? JSON.parse(domainStore.data?.configs)
     : null;
 
-  logo.value = config.value.logo
+  logo.value = config.value?.logo
     ? configg.public.baseUrl + "/" + config.value.logo
     : "/images/logo.png";
 
@@ -25,8 +25,9 @@ onMounted(() => {
     <!-- logo -->
     <div class="inline-flex">
       <NuxtLink to="/">
-        <div class="hidden md:flex items-center">
+        <div class="hidden md:flex items-center gap-5">
           <img class="h-10" :src="logo" :alt="siteName" />
+          <p class="text-black">{{ siteName }}</p>
         </div>
         <div class="block md:hidden">
           <img class="h-10" :src="logo" :alt="siteName" />

@@ -63,10 +63,25 @@ onMounted(() => {
               name="material-symbols:arrow-back-rounded"
             />
           </button>
-          <div class="bg-white rounded-md overflow-hidden">
+          <div class="bg-white rounded-md overflow-hidden relative">
             <p class="text-xl text-center mt-4 font-bold text-[#b32121]">
               Teeth Scan Report
             </p>
+
+            <a
+              href="/checkup/instant/detection-result-pdf"
+              class="absolute right-5 top-5"
+            >
+              <button
+                class="bg-gray-500 text-white rounded-full h-10 w-10 flex items-center justify-center"
+              >
+                <Icon
+                  name="pepicons-print:printer"
+                  class="h-5 w-5 text-white"
+                />
+              </button>
+            </a>
+
             <div class="md:flex md:pr-4 leading-none md:gap-5 mt-2">
               <div class="flex-none text-center w-full">
                 <img
@@ -143,7 +158,7 @@ onMounted(() => {
                                   <br />
                                   {{ problem.extra.description }}
                                 </p>
-                                <p class="mb-2">
+                                <p class="mb-2 whitespace-pre-wrap">
                                   <span class="font-bold"
                                     >Treatment Options</span
                                   >

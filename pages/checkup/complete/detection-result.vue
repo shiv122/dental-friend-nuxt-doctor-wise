@@ -54,7 +54,9 @@ const formateData = (d) => {
   data.image = d.image;
   data["no_data"] = data.length <= 0;
 
-  const validIds = [11, 19, 8, 5, 16, 12, 4, 10, 17, 15];
+  const allowed = JSON.parse(domainStore.data.configs).allowed_conditions;
+
+  const validIds = allowed;
 
   const filteredData = data.filter((item) => validIds.includes(item.id));
   console.log(filteredData, data);
@@ -158,7 +160,7 @@ const formateData = (d) => {
                                     <br />
                                     {{ problem.extra.description }}
                                   </p>
-                                  <p class="mb-2">
+                                  <p class="mb-2 whitespace-pre-wrap">
                                     <span class="font-bold"
                                       >Treatment Options</span
                                     >

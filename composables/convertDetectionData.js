@@ -1,6 +1,9 @@
+import { useDomainStore } from "~/store/domainData";
+
 export function convertDetectionData(data) {
   const convertedData = ref([]);
-
+  const domainStore = useDomainStore();
+  const allowed = JSON.parse(domainStore.data.configs).allowed_conditions;
   const convert = () => {
     convertedData.value = data?.problems.map((problem, index) => ({
       name: problem,
@@ -12,7 +15,7 @@ export function convertDetectionData(data) {
 
   convert();
 
-  const validIds = [11, 19, 8, 5, 16, 12, 4, 10, 17, 15];
+  const validIds = allowed.map(Number);
   convertedData.value = convertedData.value.filter((item) =>
     validIds.includes(item.id)
   );

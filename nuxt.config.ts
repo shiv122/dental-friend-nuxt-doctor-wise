@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: false },
+  devtools: { enabled: true },
   runtimeConfig: {
     
     apiSecret: "123",
@@ -21,6 +21,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
     'nuxt-headlessui',
+    '@sidebase/nuxt-pdf',
   ],
   components: [
     {

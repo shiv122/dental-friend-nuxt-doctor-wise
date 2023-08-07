@@ -24,14 +24,45 @@
 
 <script setup>
 import { useDomainStore } from "~/store/domainData";
+import axios from "axios";
+
 const domainStore = useDomainStore();
 const router = useRouter();
 const loading = ref("true");
+const configg = useRuntimeConfig();
+const baseUrl = ref(null);
 onMounted(() => {
+  baseUrl.value = configg.public.apiBase;
+
   if (!domainStore.data) {
     router.push({ path: "404" });
   } else {
+    checkDomainValidity();
     loading.value = false;
   }
 });
+
+const checkDomainValidity = async () => {
+  const headers = {
+    Accept: "application/json",
+  };
+  const response = await axios
+    .post(
+      baseUrl.value + "/check-domain",
+      {
+        domain: domainStore.data.domain,
+      },
+      { headers }
+    )
+    .catch((er) => {
+      domainStore.data = null;
+      console.log(er);
+      error.value = true;
+      return er;
+    });
+
+  if (response && response.status === 200) {
+    domainStore.data = response.data.domain;
+  }
+};
 </script>
