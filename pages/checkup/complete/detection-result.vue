@@ -39,11 +39,14 @@ if (detectionStore.data === null) {
 }
 
 const formattedData = ref([]);
+const validIds = ref([]);
+
 onMounted(() => {
   if (!domainStore.data) {
     router.push({ path: "404" });
   }
   data.value = detectionStore.data;
+  validIds.value = JSON.parse(domainStore.data.configs).allowed_conditions;
   data.value.map(function (d) {
     formattedData.value.push(formateData(d));
   });
@@ -53,13 +56,9 @@ const formateData = (d) => {
   const data = convertCompleteDetectionData(d).convertedData;
   data.image = d.image;
   data["no_data"] = data.length <= 0;
+  const allowed = validIds.value.map(Number);
+  const filteredData = data.filter((item) => allowed.includes(item.id));
 
-  const allowed = JSON.parse(domainStore.data.configs).allowed_conditions;
-
-  const validIds = allowed;
-
-  const filteredData = data.filter((item) => validIds.includes(item.id));
-  console.log(filteredData, data);
   filteredData.image = d.image;
   return filteredData;
 };
@@ -67,7 +66,7 @@ const formateData = (d) => {
 <template>
   <div>
     <ClientOnly>
-      <div class="min-h-screen p-3 md:p-10">
+      <div class="min-h-screen p-3 md:p-10 relative">
         <button
           class="fixed bottom-14 md:bottom-20 right-12 bg-red-500 rounded-full h-10 w-10 flex justify-center items-center z-20"
         >
@@ -79,8 +78,19 @@ const formateData = (d) => {
             name="material-symbols:arrow-back-rounded"
           />
         </button>
+        <a
+          href="/checkup/complete/detection-result-pdf"
+          class="absolute right-20 top-20 z-10"
+        >
+          <button
+            class="bg-gray-500 text-white rounded-full h-10 w-10 flex items-center justify-center"
+          >
+            <Icon name="pepicons-print:printer" class="h-5 w-5 text-white" />
+          </button>
+        </a>
+
         <div v-for="(data, index) in formattedData" :key="index">
-          <div class="bg-white rounded-md overflow-hidden my-5 px-4">
+          <div class="bg-white rounded-md overflow-hidden my-5 px-4 relative">
             <p class="text-xl text-center mt-4 font-bold text-[#b32121]">
               Teeth Scan Report
             </p>

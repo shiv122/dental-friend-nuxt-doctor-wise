@@ -69,6 +69,7 @@ onMounted(() => {
             </p>
 
             <a
+              v-if="problems.value.length > 0"
               href="/checkup/instant/detection-result-pdf"
               class="absolute right-5 top-5"
             >
