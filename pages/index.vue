@@ -6,13 +6,15 @@
             Dental Friend's AI powered Dental Checkup
           </p> -->
       </div>
-      <div v-if="!loading" class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10">
+      <div v-if="!loading" class="grid grid-cols-1 md:grid-cols-1 gap-4 mt-10">
         <UiCardsCheckupCard
           text="Instant Checkup"
           image="/images/instant_checkup.png"
           link="/checkup/instant"
         />
+
         <UiCardsCheckupCard
+          v-if="domainStore.data.domain != 'Parodontax'"
           text="Complete Checkup"
           image="/images/complete_checkup.png"
           link="/checkup/complete"

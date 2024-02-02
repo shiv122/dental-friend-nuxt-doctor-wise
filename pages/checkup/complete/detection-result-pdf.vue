@@ -122,7 +122,7 @@ onMounted(() => {
   });
 
   nextTick(() => {
-    // window.print();
+    window.print();
   });
 });
 
