@@ -6,7 +6,7 @@ const config = ref(null);
 const logo = ref(null);
 const siteName = ref(null);
 const configg = useRuntimeConfig();
-onMounted(async () => {
+onMounted(() => {
   config.value = domainStore.data?.configs
     ? JSON.parse(domainStore.data?.configs)
     : null;
