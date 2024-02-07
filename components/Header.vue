@@ -6,7 +6,9 @@ const config = ref(null);
 const logo = ref(null);
 const siteName = ref(null);
 const configg = useRuntimeConfig();
-onMounted(() => {
+const nuxtApp = useNuxtApp();
+
+nuxtApp.hook("page:finish", () => {
   config.value = domainStore.data?.configs
     ? JSON.parse(domainStore.data?.configs)
     : null;
@@ -17,6 +19,18 @@ onMounted(() => {
 
   siteName.value = config.value?.site_name ?? "Dental Friend";
 });
+
+// onMounted(() => {
+//   config.value = domainStore.data?.configs
+//     ? JSON.parse(domainStore.data?.configs)
+//     : null;
+
+//   logo.value = config.value?.logo
+//     ? configg.public.baseUrl + "/" + config.value.logo
+//     : "/images/logo.png";
+
+//   siteName.value = config.value?.site_name ?? "Dental Friend";
+// });
 </script>
 <template>
   <nav
