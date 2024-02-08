@@ -68,7 +68,7 @@ onMounted(() => {
               Teeth Scan Report
             </p>
 
-            <a
+            <!-- <a
               v-if="problems.value.length > 0"
               href="/checkup/instant/detection-result-pdf"
               class="absolute right-5 top-5"
@@ -81,7 +81,7 @@ onMounted(() => {
                   class="h-5 w-5 text-white"
                 />
               </button>
-            </a>
+            </a> -->
 
             <div class="md:flex md:pr-4 leading-none md:gap-5 mt-2">
               <div class="flex-none text-center w-full">
@@ -252,7 +252,10 @@ onMounted(() => {
               </div>
             </div>
           </div>
-          <p class="italic mt-4 text-sm text-black text-center">
+          <p class="italic mt-4 text-sm text-black text-center mb-0">
+            Powered By DentalFriend
+          </p>
+          <p class="italic mt-2 text-sm text-black text-center">
             <span class="font-bold text-sm text-red-500">Disclaimer </span>:
             DentalFriend analyses the photos of your teeth and surrounding soft
             tissue using artificial intelligence and
