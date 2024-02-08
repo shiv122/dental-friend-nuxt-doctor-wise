@@ -12,7 +12,14 @@
           image="/images/instant_checkup.png"
           link="/checkup/instant"
         />
-
+        <div class="text-center">
+          <p class="">Brought to you by</p>
+          <img
+            class="h-10 inline justify-center"
+            src="/images/sensodyne.jpg"
+            alt="Discover Nuxt 3"
+          />
+        </div>
         <UiCardsCheckupCard
           v-if="domainStore.data.domain != 'Parodontax'"
           text="Complete Checkup"

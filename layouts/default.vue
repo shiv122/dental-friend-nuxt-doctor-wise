@@ -5,10 +5,19 @@
       <div class="flex justify-center">
         <div class="container">
           <slot />
-
+          <div
+            class="fixed bottom-20 left-20 rounded-lg px-3 py-3 bg-yellow-100"
+          >
+            <p class="">
+              To know more and get accurate dignosis with right treatment,<br />
+              Dentist visit is a must. To find dentist near you, please click
+              on<br />
+              WhatsApp icon
+            </p>
+          </div>
           <a
             href="https://wa.me/918884078783"
-            class="fixed bottom-4 right-4 px-3 py-3 rounded-full shadow-md"
+            class="fixed bottom-4 left-4 px-3 py-3 rounded-full shadow-md"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
