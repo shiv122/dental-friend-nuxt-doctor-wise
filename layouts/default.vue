@@ -8,7 +8,7 @@
           <div
             class="fixed bottom-20 left-20 rounded-lg px-3 py-3 bg-yellow-100"
           >
-            <p class="">
+            <p class="text-black">
               To know more and get accurate dignosis with right treatment,<br />
               Dentist visit is a must. To find dentist near you, please click
               on<br />

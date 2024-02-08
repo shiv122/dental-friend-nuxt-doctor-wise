@@ -13,9 +13,9 @@
           link="/checkup/instant"
         />
         <div class="text-center">
-          <p class="">Brought to you by</p>
+          <p class="text-black">Brought to you by</p>
           <img
-            class="h-10 inline justify-center"
+            class="h-20 w-30 inline justify-center"
             src="/images/sensodyne.jpg"
             alt="Discover Nuxt 3"
           />
