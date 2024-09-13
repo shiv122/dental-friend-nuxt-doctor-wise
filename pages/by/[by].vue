@@ -7,18 +7,21 @@ const domainStore = useDomainStore();
 // const $loading = useLoading({});
 const error = ref(false);
 const baseUrl = ref(null);
+const mainUrl = ref(null);
 const configg = useRuntimeConfig();
 const route = useRoute();
 const router = useRouter();
 const by = route.params.by;
 onMounted(async () => {
   baseUrl.value = configg.public.apiBase;
+  mainUrl.value = configg.public.baseUrl;
   // const loader = $loading.show({});
   await checkDomainValidity();
   // loader.hide();
 });
 
 const checkDomainValidity = async () => {
+  await axios.get(`${mainUrl.value}/sanctum/csrf-cookie`);
   const headers = {
     Accept: "application/json",
   };
@@ -28,7 +31,12 @@ const checkDomainValidity = async () => {
       {
         domain: by,
       },
-      { headers }
+      { headers },
+      {
+        withCredentials: true,
+        withXSRFToken: true,
+      }
+
     )
     .catch((er) => {
       console.log(er);
@@ -38,7 +46,7 @@ const checkDomainValidity = async () => {
 
   if (response && response.status === 200) {
     domainStore.data = response.data.domain;
-    router.push({ path: "/" });
+    router.push({ path: "/choose-scan" });
   }
 };
 </script>
@@ -56,4 +64,3 @@ const checkDomainValidity = async () => {
     </div>
   </div>
 </template>
-

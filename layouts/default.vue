@@ -5,7 +5,7 @@
       <div class="flex justify-center">
         <div class="container">
           <slot />
-          <div
+          <!-- <div
             class="fixed bottom-20 left-20 rounded-lg px-3 py-3 bg-yellow-100"
           >
             <p class="text-black">
@@ -14,8 +14,8 @@
               on<br />
               WhatsApp icon
             </p>
-          </div>
-          <a
+          </div> -->
+          <!-- <a
             href="https://wa.me/918884078783"
             class="fixed bottom-4 left-4 px-3 py-3 rounded-full shadow-md"
           >
@@ -50,7 +50,7 @@
                 clip-rule="evenodd"
               ></path>
             </svg>
-          </a>
+          </a> -->
         </div>
       </div>
     </div>

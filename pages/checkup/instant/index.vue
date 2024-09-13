@@ -36,7 +36,7 @@
                   </span>
                 </div>
                 <div class="mt-5">
-                  <span class="font-bold">How to upload your photo</span><br />
+                  <span class="font-bold">How to click your photo?</span><br />
                   <ol class="list-decimal list-inside mt-2">
                     <li class="mb-2">
                       Picture should have only required teeth and surrounding
