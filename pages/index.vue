@@ -8,12 +8,12 @@
       </div>
       <div v-if="!loading" class="grid grid-cols-1 align-middle md:grid-cols-2 gap-4 mt-14">
         <div class="text-center cursor-pointer" @click="instantCheckup">
-          <img class="rounded-2xl w-full h-[200px] border-green-300 border-2 sm:h-[300px]"
+          <img class="rounded-2xl w-full  border-green-300 border-2 sm:h-[400px]"
             src="/images/instant-checkup-2.png" alt="instant-checkup-2">
           <button class="bg-green-600 text-white text-xl p-2 rounded-lg mt-4">Instant Checkup</button>
         </div>
         <div class="text-center cursor-pointer sm:mt-0 mt-10" @click="completeCheckup">
-          <img class="rounded-2xl w-full h-[200px] border-blue-300 border-2 sm:h-[300px]"
+          <img class="rounded-2xl w-full  border-blue-300 border-2 sm:h-[400px]"
             src="/images/complete-checkup-2.png" alt="instant-checkup-2">
           <button class="bg-blue-500 text-white text-xl p-2 rounded-lg mt-4">Complete Checkup</button>
         </div>
