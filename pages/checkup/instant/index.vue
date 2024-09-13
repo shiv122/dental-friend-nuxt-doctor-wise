@@ -1,35 +1,34 @@
 <template>
-  <div>
-    <div class="min-h-screen p-5 md:p-10">
-      <button
-        class="fixed bottom-14 md:bottom-20 right-12 bg-red-500 rounded-full h-10 w-10 flex justify-center items-center z-20"
-      >
-        <Icon
-          @click="router.push({ path: '/' })"
-          class="text-white"
-          height="25px"
-          width="25px"
-          name="material-symbols:arrow-back-rounded"
-        />
+  <div class="">
+    <!-- <button
+      class="fixed bottom-14 md:bottom-20 right-12 bg-red-500 rounded-full h-10 w-10 flex justify-center items-center z-20">
+      <Icon @click="router.push({ path: '/' })" class="text-white" height="25px" width="25px"
+        name="material-symbols:arrow-back-rounded" />
+    </button> -->
+
+    <div class="py-4 flex align-middle">
+      <button class=" rounded-full h-8 w-8 flex justify-center items-center z-20">
+        <Icon @click="router.push({ path: '/choose-scan' })" class="text-black" height="22px" width="22px"
+          name="material-symbols:arrow-back-rounded" />
       </button>
+      <p class="text-2xl font-bold ml-4">Instant Checkup</p>
+    </div>
+
+
+    <div class="min-h-screen  grid grid-cols-1 md:grid-cols-2 gap-3">
       <div class="bg-white rounded-md shadow-lg">
-        <div class="md:flex px-4 leading-none md:gap-5">
+        <div class=" px-4 leading-none">
           <div class="flex-none text-center">
-            <img
-              src="/images/instant_checkup.png"
-              alt="pic"
-              class="h-auto bg-gray-100 w-56 rounded-md shadow-sm transform -translate-y-4 border-4 border-gray-300 inline"
-            />
+            <img src="/images/instant_checkup.png" alt="pic" class="h-auto bg-gray-100 w-56 rounded-md  inline" />
           </div>
 
           <div class="flex-col text-gray-900 flex-1 pb-10">
-            <p class="pt-4 text-2xl font-bold">Instant Checkup</p>
-            <hr class="hr-text" data-content="" />
+            <!-- <hr class="hr-text" data-content="" /> -->
 
-            <div class="grid grid-cols-1 md:grid-cols-2">
+            <div class="grid grid-cols-1">
               <div class="text-md">
-                <div class="text-md my-2">
-                  <span class="font-bold text-2xl">Scan Your Teeth</span><br />
+                <div class="text-md my-2 text-center">
+                  <span class="font-bold text-xl ">Scan Your Teeth</span><br />
                   <span class="">
                     You can scan your teeth by uploading images of your teeth
                     via Camera or Gallery
@@ -51,37 +50,29 @@
                     <li>Get Results</li>
                   </ol>
                 </div>
+                <div class="mt-4">
+                  <span class="font-bold">Instructional Video</span><br />
+                  <div class="mt-3">
+                    <video src="/videos/instant-checkup.mp4" autoplay controls loop muted></video>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="bg-white rounded-md shadow-lg mt-10 p-5 md:p-10">
-        <form
-          @submit.prevent="handleSubmit"
-          class="mt-8 space-y-3"
-          id="upload-from"
-          enctype="multipart/form-data"
-        >
+      <div class="bg-white rounded-md shadow-lg p-5 md:p-10">
+        <form @submit.prevent="handleSubmit" class="mt-8 space-y-3" id="upload-from" enctype="multipart/form-data">
           <div class="grid grid-cols-1 space-y-2">
-            <label class="text-sm font-bold text-gray-500 tracking-wide"
-              >Upload Image</label
-            >
-            <file-pond
-              :imageEditor="myEditor"
-              :ref="pond"
-              @preparefile="handleEditorProcess($event)"
-              label-idle="Click photo or Select Photo"
-            />
+            <label class="text-sm font-bold text-gray-500 tracking-wide">Upload Image</label>
+            <file-pond :imageEditor="myEditor" :ref="pond" @preparefile="handleEditorProcess($event)"
+              label-idle="Click photo or Select Photo" />
           </div>
           <!-- <img :src="previewImage" alt="" /> -->
           <div class="text-center">
-            <button
-              :disabled="isLoading || file === null"
-              type="submit"
-              class="mt-5 disabled:opacity-60 disabled:pointer-events-none inline-block w-full md:w-60 justify-center bg-[#b32121] text-gray-100 p-4 rounded-lg tracking-wide font-semibold focus:outline-none focus:shadow-outline hover:bg-[#8f1212] shadow-lg cursor-pointer transition ease-in duration-300 whitespace-nowrap"
-            >
+            <button :disabled="isLoading || file === null" type="submit"
+              class="mt-5 disabled:opacity-60 disabled:pointer-events-none inline-block w-full md:w-60 justify-center bg-[#b32121] text-gray-100 p-4 rounded-lg tracking-wide font-semibold focus:outline-none focus:shadow-outline hover:bg-[#8f1212] shadow-lg cursor-pointer transition ease-in duration-300 whitespace-nowrap">
               <span v-if="!isLoading">Upload Photo</span>
               <span v-else>Uploading...</span>
             </button>
