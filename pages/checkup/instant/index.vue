@@ -68,6 +68,7 @@
             <label class="text-sm font-bold text-gray-500 tracking-wide">Upload Image</label>
             <file-pond :imageEditor="myEditor" :ref="pond" @preparefile="handleEditorProcess($event)"
               label-idle="Click photo or Select Photo" />
+              
           </div>
           <!-- <img :src="previewImage" alt="" /> -->
           <div class="text-center">
