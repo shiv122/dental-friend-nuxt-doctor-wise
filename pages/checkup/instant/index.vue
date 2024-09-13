@@ -8,14 +8,14 @@
 
     <div class="py-4 flex align-middle">
       <button class=" rounded-full h-8 w-8 flex justify-center items-center z-20">
-        <Icon @click="router.push({ path: '/choose-scan' })" class="text-black" height="22px" width="22px"
+        <Icon @click="router.push({ path: '/' })" class="text-black" height="22px" width="22px"
           name="material-symbols:arrow-back-rounded" />
       </button>
-      <p class="text-2xl font-bold ml-4">Instant Checkup</p>
+      <p class="text-2xl text-black font-bold ml-4">Instant Checkup</p>
     </div>
 
 
-    <div class="min-h-screen  grid grid-cols-1 md:grid-cols-2 gap-3">
+    <div class="min-h-screen grid grid-cols-1 md:grid-cols-2 gap-3">
       <div class="bg-white rounded-md shadow-lg">
         <div class=" px-4 leading-none">
           <div class="flex-none text-center">
@@ -68,7 +68,6 @@
             <label class="text-sm font-bold text-gray-500 tracking-wide">Upload Image</label>
             <file-pond :imageEditor="myEditor" :ref="pond" @preparefile="handleEditorProcess($event)"
               label-idle="Click photo or Select Photo" />
-              
           </div>
           <!-- <img :src="previewImage" alt="" /> -->
           <div class="text-center">

@@ -97,6 +97,9 @@ const rightView = ref(null);
 const upperJaw = ref(null);
 const lowerJaw = ref(null);
 const results = ref(null);
+const image = ref(null);
+const video = ref(null);
+const showModal = ref(false);
 
 const isLoading = ref(false);
 const configg = useRuntimeConfig();
@@ -220,46 +223,117 @@ async function handleEditorProcess(forRef, imageState) {
     r.blob()
   );
 }
+
+function openModal(myImage, myVideo) {
+  image.value = myImage;
+  video.value = myVideo;
+  showModal.value = true;
+}
+function closeModal() {
+  showModal.value = false;
+  image.value = null;
+  video.value = null;
+}
 </script>
 <template>
   <div>
-    <div class="min-h-screen md:p-10 p-5">
-      <button
-        class="fixed bottom-14 md:bottom-20 right-12 bg-red-500 rounded-full h-10 w-10 flex justify-center items-center z-20"
-      >
-        <Icon
-          @click="router.push({ path: '/' })"
-          class="text-white"
-          height="25px"
-          width="25px"
-          name="material-symbols:arrow-back-rounded"
-        />
+    <div class="py-4 flex align-middle">
+      <button class=" rounded-full h-8 w-8 flex justify-center items-center z-20">
+        <Icon @click="router.push({ path: '/' })" class="text-black" height="22px" width="22px"
+          name="material-symbols:arrow-back-rounded" />
       </button>
-      <div class="bg-white rounded-md shadow-lg">
-        <div class="md:flex px-4 leading-none md:gap-5">
-          <div class="flex-none text-center">
-            <img
-              src="/images/complete_checkup.png"
-              alt="pic"
-              class="h-auto bg-gray-100 w-56 rounded-md shadow-sm transform -translate-y-4 border-4 border-gray-300 inline"
-            />
+      <p class="text-2xl text-black font-bold ml-4">Complete Checkup</p>
+    </div>
+
+
+
+    <div id="modelConfirm" :class="{ 'fixed': showModal, 'hidden': !showModal }"
+      class="z-50 inset-0 bg-gray-900 bg-opacity-60 overflow-y-auto h-full w-full px-4 ">
+      <div class="relative top-12 mx-auto shadow-xl rounded-md bg-white max-w-md">
+
+        <div class="flex justify-end p-2">
+          <button @click="closeModal"
+            onclick="closeModal('modelConfirm', '/images/frontview_ph.jpeg', '/videos/instant-checkup.mp4')"
+            type="button"
+            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </button>
+        </div>
+
+        <div class="bg-white rounded-md shadow-lg">
+          <div class=" px-4 leading-none">
+            <div class="flex-none text-center">
+              <img :src="image" alt="pic" class="h-auto bg-gray-100 w-56 rounded-md  inline" />
+            </div>
+
+            <div class="flex-col text-gray-900 flex-1 pb-10">
+              <!-- <hr class="hr-text" data-content="" /> -->
+
+              <div class="grid grid-cols-1">
+                <div class="text-md">
+                  <div class="text-md my-2 text-center">
+                    <span class="font-bold text-xl ">Scan Your Teeth</span><br />
+                    <span class="">
+                      You can scan your teeth by uploading images of your teeth
+                      via Camera or Gallery
+                    </span>
+                  </div>
+                  <div class="mt-5">
+                    <span class="font-bold">How to click your photo?</span><br />
+                    <ol class="list-decimal list-inside mt-2">
+                      <li class="mb-2">
+                        Picture should have only required teeth and surrounding
+                        soft tissue
+                      </li>
+                      <li class="mb-2">The Picture should be clear and bright</li>
+                      <li class="mb-2">Use the flash if necessary</li>
+                      <li class="mb-2">
+                        Avoid blurred, overexposed and dark pictures
+                      </li>
+                      <li class="mb-2">Upload it</li>
+                      <li>Get Results</li>
+                    </ol>
+                  </div>
+                  <div class="mt-4">
+                    <span class="font-bold">Instructional Video</span><br />
+                    <div class="mt-3">
+                      <video :src="video" autoplay controls loop muted></video>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="grid grid-cols-2 space-y-2"></div>
+        </div>
 
-          <div class="flex-col text-gray-900 flex-1 pb-10">
-            <p class="pt-4 text-2xl font-bold">Complete Checkup</p>
-            <hr class="hr-text mt-2" data-content="" />
+      </div>
+    </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2">
+    <div class="min-h-screen grid grid-cols-1 md:grid-cols-1 gap-3">
+      <div class="bg-white rounded-md shadow-lg">
+        <div class="px-4 leading-none md:gap-5">
+
+          <div class="flex-none text-center">
+            <img src="/images/complete_checkup.png" alt="pic" class="h-auto bg-gray-100 w-56 rounded-md  inline" />
+          </div>
+          <div class="grid grid-cols-1"></div>
+
+          <div class="flex-col text-gray-900 flex-1">
+
+            <div class="grid grid-cols-1">
               <div class="text-md">
-                <div class="text-md my-2">
-                  <span class="font-bold text-2xl">Scan Your Teeth</span><br />
+                <div class="text-md my-2 text-center">
+                  <span class="font-bold text-xl ">Scan Your Teeth</span><br />
                   <span class="">
                     You can scan your teeth by uploading images of your teeth
                     via Camera or Gallery
                   </span>
                 </div>
-                <div class="mt-5">
+                <!-- <div class="mt-5">
                   <span class="font-bold">How to upload your photo</span><br />
                   <ol class="list-decimal list-inside mt-2">
                     <li class="mb-2">
@@ -274,88 +348,103 @@ async function handleEditorProcess(forRef, imageState) {
                     <li class="mb-2">Upload it</li>
                     <li>Get Results</li>
                   </ol>
-                </div>
+                </div> -->
+                <!-- <div class="mt-4">
+                  <span class="font-bold">Instructional Video</span><br />
+                  <div class="mt-3">
+                    <video src="/videos/instant-checkup.mp4" autoplay controls loop muted></video>
+                  </div>
+                </div> -->
               </div>
             </div>
           </div>
         </div>
+        <div class="bg-white rounded-md shadow-lg p-2 md:px-10">
+          <ClientOnly>
+            <form @submit.prevent="handleSubmit" class="mt-8 space-y-3" id="upload-from" enctype="multipart/form-data">
+              <div class="grid grid-cols-1 grid-rows-3 md:grid-cols-2 gap-4">
+                <div class="relative">
+                  <FilePond :imageEditor="myEditor" @preparefile="handleEditorProcess('frontView', $event)"
+                    id="font-teeth-image" class="md:col-span-2" :required="false" name="Teeth Front view"
+                    label-idle='<img src="/images/frontview_ph.jpeg" />Teeth Front View' />
+                  <div @click="openModal('/images/frontview_ph.jpeg', '/videos/front.mp4')"
+                    class="text-black absolute top-4 cursor-pointer right-10"><svg xmlns="http://www.w3.org/2000/svg" width="30"
+                      height="30" viewBox="0 0 24 24">
+                      <g fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M13.737 21.848a10.002 10.002 0 0 0 6.697-15.221a10 10 0 1 0-6.698 15.221z" />
+                        <path stroke-linecap="square" d="M12 12v6m0-11V6" />
+                      </g>
+                    </svg></div>
+                </div>
+                <div class="relative">
+                  <FilePond :imageEditor="myEditor" @:init="handleFilePondInit" id="right-teeth-image"
+                    @preparefile="handleEditorProcess('rightView', $event)" class="" :required="false"
+                    name="Teeth right view" label-idle='<img src="/images/rightview_ph.jpeg" />Teeth Right View' />
+                  <div @click="openModal('/images/rightview_ph.jpeg', '/videos/right.mp4')"
+                    class="text-black absolute top-4 cursor-pointer right-10"><svg xmlns="http://www.w3.org/2000/svg" width="30"
+                      height="30" viewBox="0 0 24 24">
+                      <g fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M13.737 21.848a10.002 10.002 0 0 0 6.697-15.221a10 10 0 1 0-6.698 15.221z" />
+                        <path stroke-linecap="square" d="M12 12v6m0-11V6" />
+                      </g>
+                    </svg></div>
+                </div>
+
+                <div class="relative">
+                  <FilePond :imageEditor="myEditor" @:init="handleFilePondInit" id="left-teeth-image" class=""
+                    @preparefile="handleEditorProcess('leftView', $event)" :required="false" name="Teeth left view"
+                    label-idle='<img src="/images/leftview_ph.jpeg" />Teeth Left View' />
+                  <div @click="openModal('/images/leftview_ph.jpeg', '/videos/left.mp4')"
+                    class="text-black absolute top-4 cursor-pointer right-10"><svg xmlns="http://www.w3.org/2000/svg" width="30"
+                      height="30" viewBox="0 0 24 24">
+                      <g fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M13.737 21.848a10.002 10.002 0 0 0 6.697-15.221a10 10 0 1 0-6.698 15.221z" />
+                        <path stroke-linecap="square" d="M12 12v6m0-11V6" />
+                      </g>
+                    </svg></div>
+                </div>
+
+                <div class="relative">
+                  <FilePond :imageEditor="myEditor" @:init="handleFilePondInit" id="upper-jaw-image" class=""
+                    @preparefile="handleEditorProcess('upperJaw', $event)" :required="false" name="Teeth upper jaw"
+                    label-idle='<img src="/images/upperview_ph.jpeg" />Teeth Upper Jaw' />
+                  <div @click="openModal('/images/upperview_ph.jpeg', '/videos/upper.mp4')"
+                    class="text-black absolute top-4 cursor-pointer right-10"><svg xmlns="http://www.w3.org/2000/svg" width="30"
+                      height="30" viewBox="0 0 24 24">
+                      <g fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M13.737 21.848a10.002 10.002 0 0 0 6.697-15.221a10 10 0 1 0-6.698 15.221z" />
+                        <path stroke-linecap="square" d="M12 12v6m0-11V6" />
+                      </g>
+                    </svg></div>
+                </div>
+
+                <div class="relative">
+                  <FilePond :imageEditor="myEditor" @:init="handleFilePondInit" id="lower-jaw-image" class=""
+                    @preparefile="handleEditorProcess('lowerJaw', $event)" :required="false" name="Teeth lower jaw"
+                    label-idle='<img src="/images/lowerview_ph.jpeg" />Teeth Lower Jaw' />
+                  <div @click="openModal('/images/lowerview_ph.jpeg', '/videos/lower.mp4')"
+                    class="text-black absolute top-4 cursor-pointer right-10"><svg xmlns="http://www.w3.org/2000/svg" width="30"
+                      height="30" viewBox="0 0 24 24">
+                      <g fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M13.737 21.848a10.002 10.002 0 0 0 6.697-15.221a10 10 0 1 0-6.698 15.221z" />
+                        <path stroke-linecap="square" d="M12 12v6m0-11V6" />
+                      </g>
+                    </svg></div>
+                </div>
+              </div>
+              <div class="text-center">
+                <button :disabled="isLoading" type="submit"
+                  class="mt-5 disabled:opacity-60 disabled:pointer-events-none inline-block w-full md:w-60 justify-center bg-[#b32121] text-gray-100 p-4 rounded-lg tracking-wide font-semibold focus:outline-none focus:shadow-outline hover:bg-[#8f1212] shadow-lg cursor-pointer transition ease-in duration-300 whitespace-nowrap">
+                  <span v-if="!isLoading">Upload Photo</span>
+                  <span v-else>Uploading...</span>
+                </button>
+              </div>
+            </form>
+          </ClientOnly>
+        </div>
       </div>
 
-      <div class="bg-white rounded-md shadow-lg mt-10 p-2 md:p-10">
-        <ClientOnly>
-          <form
-            @submit.prevent="handleSubmit"
-            class="mt-8 space-y-3"
-            id="upload-from"
-            enctype="multipart/form-data"
-          >
-            <div class="grid grid-cols-1 grid-rows-3 md:grid-cols-2 gap-4">
-              <FilePond
-                :imageEditor="myEditor"
-                @preparefile="handleEditorProcess('frontView', $event)"
-                id="font-teeth-image"
-                class="md:col-span-2"
-                :required="false"
-                name="Teeth Front view"
-                label-idle='<img src="/images/frontview_ph.jpeg" />Teeth Front View'
-              />
-              <FilePond
-                :imageEditor="myEditor"
-                @:init="handleFilePondInit"
-                id="right-teeth-image"
-                @preparefile="handleEditorProcess('rightView', $event)"
-                class=""
-                :required="false"
-                name="Teeth right view"
-                label-idle='<img src="/images/rightview_ph.jpeg" />Teeth Right View'
-              />
 
-              <FilePond
-                :imageEditor="myEditor"
-                @:init="handleFilePondInit"
-                id="left-teeth-image"
-                class=""
-                @preparefile="handleEditorProcess('leftView', $event)"
-                :required="false"
-                name="Teeth left view"
-                label-idle='<img src="/images/leftview_ph.jpeg" />Teeth Left View'
-              />
-
-              <FilePond
-                :imageEditor="myEditor"
-                @:init="handleFilePondInit"
-                id="upper-jaw-image"
-                class=""
-                @preparefile="handleEditorProcess('upperJaw', $event)"
-                :required="false"
-                name="Teeth upper jaw"
-                label-idle='<img src="/images/upperview_ph.jpeg" />Teeth Upper Jaw'
-              />
-
-              <FilePond
-                :imageEditor="myEditor"
-                @:init="handleFilePondInit"
-                id="lower-jaw-image"
-                class=""
-                @preparefile="handleEditorProcess('lowerJaw', $event)"
-                :required="false"
-                name="Teeth lower jaw"
-                label-idle='<img src="/images/lowerview_ph.jpeg" />Teeth Lower Jaw'
-              />
-            </div>
-            <div class="text-center">
-              <button
-                :disabled="isLoading"
-                type="submit"
-                class="mt-5 disabled:opacity-60 disabled:pointer-events-none inline-block w-full md:w-60 justify-center bg-[#b32121] text-gray-100 p-4 rounded-lg tracking-wide font-semibold focus:outline-none focus:shadow-outline hover:bg-[#8f1212] shadow-lg cursor-pointer transition ease-in duration-300 whitespace-nowrap"
-              >
-                <span v-if="!isLoading">Upload Photo</span>
-                <span v-else>Uploading...</span>
-              </button>
-            </div>
-          </form>
-        </ClientOnly>
-      </div>
       <p class="italic mt-4 text-sm text-black text-center">
         <span class="font-bold text-sm text-red-500">Disclaimer </span>:
         DentalFriend analyses the photos of your teeth and surrounding soft
