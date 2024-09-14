@@ -34,7 +34,7 @@ nuxtApp.hook("page:finish", () => {
 </script>
 <template>
   <nav
-    class="bg-white w-full flex relative justify-between items-center mx-auto px-8 h-20"
+    class="bg-white w-full flex relative justify-center items-center mx-auto px-8 h-20"
   >
     <!-- logo -->
     <div class="inline-flex">
@@ -44,7 +44,7 @@ nuxtApp.hook("page:finish", () => {
           <p class="text-black">{{ siteName }}</p>
         </div>
         <div class="block md:hidden">
-          <img class="h-10" :src="logo" :alt="siteName" />
+          <img class="h-20" :src="logo" :alt="siteName" />
         </div>
       </NuxtLink>
     </div>
