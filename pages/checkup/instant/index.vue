@@ -53,7 +53,7 @@
                 <div class="mt-4">
                   <span class="font-bold">Instructional Video</span><br />
                   <div class="mt-3">
-                    <video src="/videos/instant-checkup.mp4" autoplay controls loop muted></video>
+                    <video src="/videos/instant-checkup.mp4" controls loop muted></video>
                   </div>
                 </div>
               </div>
@@ -71,11 +71,16 @@
           </div>
           <!-- <img :src="previewImage" alt="" /> -->
           <div class="text-center">
-            <button :disabled="isLoading || file === null" type="submit"
+            <button type="submit"
               class="mt-5 disabled:opacity-60 disabled:pointer-events-none inline-block w-full md:w-60 justify-center bg-[#b32121] text-gray-100 p-4 rounded-lg tracking-wide font-semibold focus:outline-none focus:shadow-outline hover:bg-[#8f1212] shadow-lg cursor-pointer transition ease-in duration-300 whitespace-nowrap">
               <span v-if="!isLoading">Upload Photo</span>
               <span v-else>Uploading...</span>
             </button>
+            <!-- <button :disabled="isLoading || file === null" type="submit"
+              class="mt-5 disabled:opacity-60 disabled:pointer-events-none inline-block w-full md:w-60 justify-center bg-[#b32121] text-gray-100 p-4 rounded-lg tracking-wide font-semibold focus:outline-none focus:shadow-outline hover:bg-[#8f1212] shadow-lg cursor-pointer transition ease-in duration-300 whitespace-nowrap">
+              <span v-if="!isLoading">Upload Photo</span>
+              <span v-else>Uploading...</span>
+            </button> -->
           </div>
         </form>
       </div>

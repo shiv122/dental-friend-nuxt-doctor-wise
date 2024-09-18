@@ -23,7 +23,7 @@ onMounted(() => {
             <!-- <h3 class="text-3xl font-semibold text-center text-black">Dental Care Scans</h3> -->
             <div class="grid grid-cols-2 mt-4 gap-6">
                 <div class="relative cursor-pointer" @click="goToNext">
-                    <img src="/images/scan-1.png" alt="Discover Nuxt 3">
+                    <img src="/images/scan-3.png" alt="Discover Nuxt 3">
                     <p
                         class="absolute bottom-[20px] left-[10px] md:left-[25px] font-semibold text-white text-sm md:text-2xl">
                         AI Teeth Scan</p>
