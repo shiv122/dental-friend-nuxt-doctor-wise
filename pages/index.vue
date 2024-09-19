@@ -10,13 +10,13 @@
         <div class="text-center cursor-pointer" @click="instantCheckup">
           <img class="rounded-2xl w-full  border-green-300 border-2 sm:h-[400px]"
             src="/images/instant-checkup-2.png" alt="instant-checkup-2">
-            <p class="mt-4">The "Instant Checkup" provides a quick assessment for immediate dental health concerns with just 1 picture</p>
+            <p class="mt-4 text-black">The "Instant Checkup" provides a quick assessment for immediate dental health concerns with just 1 picture</p>
           <button class="bg-green-600 text-white text-xl p-2 rounded-lg mt-4">Instant Checkup</button>
         </div>
         <div class="text-center cursor-pointer sm:mt-0 mt-10" @click="completeCheckup">
           <img class="rounded-2xl w-full  border-blue-300 border-2 sm:h-[400px]"
             src="/images/complete-checkup-2.png" alt="instant-checkup-2">
-            <p class="mt-4">"Complete Checkup" offers a more detailed evaluation, covering a broader range of dental health aspects with clicking 5 pictures.</p>
+            <p class="mt-4 text-black">"Complete Checkup" offers a more detailed evaluation, covering a broader range of dental health aspects with clicking 5 pictures.</p>
           <button class="bg-blue-500 text-white text-xl p-2 rounded-lg mt-4">Complete Checkup</button>
         </div>
         <!-- <UiCardsCheckupCard text="Instant Checkup" image="/images/instant_checkup.png" link="/checkup/instant" /> -->
