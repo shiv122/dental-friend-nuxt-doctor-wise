@@ -200,7 +200,7 @@ function printPdf() {
             <div class="px-0 md:px-5 pb-4">
 
               <div v-show="problems.value.length > 0" class="w-full flex justify-center py-4">
-                <a href="https://yctprimeapp.blr1.digitaloceanspaces.com/images/banner/1qgEJ03mwFYcXJHuPD2yueyLs434B8mYqD03t6HA.jpg" download class="bg-red-500 text-white text-md p-2 rounded-lg mt-4 text-center">Download
+                <a href="/checkup/instant/detection-result-pdf" class="bg-red-500 text-white text-md p-2 rounded-lg mt-4 text-center">Download
                   PDF</a>
               </div>
               <p class="text-center">Thank you for completing the AI Evaluation. Questions? Concerns? Connect with The TeleDentists NOW.
