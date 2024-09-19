@@ -9,7 +9,7 @@
             <!-- {{ problems }} -->
             <div class="flex justify-center items-center flex-col">
               <img class="h-20" :src="logo" :alt="siteName" />
-              <p class="mt-2 text-lg">{{ siteName }} Health Screening Report</p>
+              <!-- <p class="mt-2 text-lg">{{ siteName }} Health Screening Report</p> -->
               <p>Instant Checkup</p>
             </div>
 

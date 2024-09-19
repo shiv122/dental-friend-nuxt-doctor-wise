@@ -39,7 +39,7 @@
                   <ol class="list-decimal list-inside mt-2">
                     <li class="mb-2">
                       Picture should have only required teeth and surrounding
-                      soft tissue
+                        soft tissue. Crop the required area.
                     </li>
                     <li class="mb-2">The Picture should be clear and bright</li>
                     <li class="mb-2">Use the flash if necessary</li>
