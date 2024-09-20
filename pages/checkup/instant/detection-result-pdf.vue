@@ -42,14 +42,14 @@
                   {{ problem.extra["treatment options"] }}
                 </p>
 
-                <p class="mt-4">
-                  Disclaimer <br />
-                  DentalFriend analyses the photos of your teeth and surrounding
-                  soft tissue using artificial intelligence and machine
-                  learning. It is for awareness purpose only. It is not
-                  diagnostic and should be verified by your dentist.
-                </p>
               </div>
+              <p class="mt-4">
+                Disclaimer <br />
+                DentalFriend analyses the photos of your teeth and surrounding
+                soft tissue using artificial intelligence and machine
+                learning. It is for awareness purpose only. It is not
+                diagnostic and should be verified by your dentist.
+              </p>
             </div>
           </div>
         </div>

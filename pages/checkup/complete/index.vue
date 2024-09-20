@@ -333,12 +333,12 @@ function closeModal() {
                     via Camera or Gallery
                   </span>
                 </div>
-                <!-- <div class="mt-5">
+                <div class="mt-5">
                   <span class="font-bold">How to upload your photo</span><br />
                   <ol class="list-decimal list-inside mt-2">
                     <li class="mb-2">
                       Picture should have only required teeth and surrounding
-                      soft tissue
+                        soft tissue. Crop the required area.
                     </li>
                     <li class="mb-2">The Picture should be clear and bright</li>
                     <li class="mb-2">Use the flash if necessary</li>
@@ -348,7 +348,7 @@ function closeModal() {
                     <li class="mb-2">Upload it</li>
                     <li>Get Results</li>
                   </ol>
-                </div> -->
+                </div>
                 <!-- <div class="mt-4">
                   <span class="font-bold">Instructional Video</span><br />
                   <div class="mt-3">

@@ -203,7 +203,7 @@ function printPdf() {
                 <a href="/checkup/instant/detection-result-pdf" class="bg-red-500 text-white text-md p-2 rounded-lg mt-4 text-center">Download
                   PDF</a>
               </div>
-              <p class="text-center">Thank you for completing the AI Evaluation. Questions? Concerns? Connect with The TeleDentists NOW.
+              <p class="text-center text-black">Thank you for completing the AI Evaluation. Questions? Concerns? Connect with The TeleDentists NOW.
                 <a class="underline text-blue-400" href="https://teledentists.vsee.me/u/AI">Click here</a> for your
                 virtual consultation with a
                 dentist.
