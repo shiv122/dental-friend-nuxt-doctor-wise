@@ -12,9 +12,17 @@ import {
   DisclosurePanel,
 } from "@headlessui/vue";
 import { useDomainStore } from "~/store/domainData";
+import axios from "axios";
+const configg = useRuntimeConfig();
 
+const baseUrl = ref(null);
 const isOpen = ref(false);
 const viewImage = ref(null);
+const cavityVideo = ref([
+  "https://www.youtube.com/embed/iKaKvjtzDtI",
+  "https://www.youtube.com/embed/ND4ojJ4mUfU",
+  "https://www.youtube.com/embed/nLOiyGGv4s8",
+])
 
 const setViewImage = (image) => {
   viewImage.value = image;
@@ -39,17 +47,42 @@ const domainStore = useDomainStore();
 
 const problems = ref(null);
 onMounted(() => {
+  baseUrl.value = configg.public.apiBase;
   if (!domainStore.data) {
     router.push({ path: "404" });
   }
   data.value = detectionStore.data;
   problems.value = convertDetectionData(data.value).convertedData;
+  console.log(data.value.image);
+  console.log(data.value.problems);
+  console.log(data.value.colors);
+  console.log(data.value.extras);
 });
 
-function printPdf() {
-  window.print();
-  // let w = window.open()
-  // router.push("/checkup/instant/detection-result-pdf");
+async function printPdf() {
+  await axios.post(baseUrl.value + "/basic/generate-instant-checkup-pdf", {
+    data: data.value,
+  }, {
+    responseType: 'blob',
+  }).then((response) => {
+    console.log(response);
+
+    // Create a Blob from the response data
+    const blob = new Blob([response.data], { type: 'application/pdf' });
+    const url = window.URL.createObjectURL(blob);
+
+    // Create a link and trigger the download
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'detection-result.pdf'); // Set the file name
+    document.body.appendChild(link);
+    link.click();
+
+    // Clean up
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+  })
+
 }
 </script>
 <template>
@@ -155,7 +188,12 @@ function printPdf() {
                                       leave-to-class="shrink-leave-to">
                                       <DisclosurePanel class="px-4 pt-4 pb-2 text-sm text-gray-500 bg-rose-200">
                                         <div class="flex flex-wrap gap-3">
-                                          <div class="rounded-lg overflow-hidden" v-for="vid in problem.extra.youtube">
+                                          <div v-show="problem.id != 11" class="rounded-lg overflow-hidden"
+                                            v-for="vid in problem.extra.youtube">
+                                            <iframe :src="vid"> </iframe>
+                                          </div>
+                                          <div v-show="problem.id == 11" class="rounded-lg overflow-hidden"
+                                            v-for="vid in cavityVideo">
                                             <iframe :src="vid"> </iframe>
                                           </div>
                                         </div>
@@ -200,10 +238,11 @@ function printPdf() {
             <div class="px-0 md:px-5 pb-4">
 
               <div v-show="problems.value.length > 0" class="w-full flex justify-center py-4">
-                <a href="/checkup/instant/detection-result-pdf" class="bg-red-500 text-white text-md p-2 rounded-lg mt-4 text-center">Download
-                  PDF</a>
+                <button @click="printPdf" class="bg-red-500 text-white text-md p-2 rounded-lg mt-4 text-center">Download
+                  PDF</button>
               </div>
-              <p class="text-center text-black">Thank you for completing the AI Evaluation. Questions? Concerns? Connect with The TeleDentists NOW.
+              <p class="text-center text-black">Thank you for completing the AI Evaluation. Questions? Concerns? Connect
+                with The TeleDentists NOW.
                 <a class="underline text-blue-400" href="https://teledentists.vsee.me/u/AI">Click here</a> for your
                 virtual consultation with a
                 dentist.
