@@ -73,7 +73,11 @@ const checkDomainValidity = async () => {
       {
         domain: domainStore.data.domain,
       },
-      { headers }
+      { headers },
+      {
+        withCredentials: true,
+        withXSRFToken: true,
+      }
     )
     .catch((er) => {
       domainStore.data = null;
