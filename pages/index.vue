@@ -64,6 +64,7 @@ function completeCheckup(){
 }
 
 const checkDomainValidity = async () => {
+  const csrf = () => axios.get('/sanctum/csrf-cookie')
   const headers = {
     Accept: "application/json",
   };
