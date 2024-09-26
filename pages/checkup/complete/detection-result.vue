@@ -15,9 +15,17 @@ import {
   DisclosurePanel,
 } from "@headlessui/vue";
 import { useDomainStore } from "~/store/domainData";
+import axios from "axios";
+const configg = useRuntimeConfig();
+
 const domainStore = useDomainStore();
 const isOpen = ref(false);
 const viewImage = ref(null);
+const cavityVideo = ref([
+  "https://www.youtube.com/embed/iKaKvjtzDtI",
+  "https://www.youtube.com/embed/ND4ojJ4mUfU",
+  "https://www.youtube.com/embed/nLOiyGGv4s8",
+])
 
 const setViewImage = (image) => {
   viewImage.value = image;
@@ -40,8 +48,10 @@ if (detectionStore.data === null) {
 
 const formattedData = ref([]);
 const validIds = ref([]);
+const baseUrl = ref(null);
 
 onMounted(() => {
+  baseUrl.value = configg.public.apiBase;
   if (!domainStore.data) {
     router.push({ path: "404" });
   }
@@ -50,6 +60,9 @@ onMounted(() => {
   data.value.map(function (d) {
     formattedData.value.push(formateData(d));
   });
+
+  console.log(formattedData.value);
+
 });
 
 const formateData = (d) => {
@@ -62,6 +75,43 @@ const formateData = (d) => {
   filteredData.image = d.image;
   return filteredData;
 };
+
+async function printPdf() {
+
+  const image = [
+    formattedData.value[0].image,
+    formattedData.value[1].image,
+    formattedData.value[2].image,
+    formattedData.value[3].image,
+    formattedData.value[4].image,
+  ]
+
+  console.log(formattedData.value);
+  await axios.post(baseUrl.value + "/basic/generate-complete-checkup-pdf", {
+    data: formattedData.value,
+    image: image,
+  }, {
+    responseType: 'blob',
+  }).then((response) => {
+    console.log(response);
+
+    // Create a Blob from the response data
+    const blob = new Blob([response.data], { type: 'application/pdf' });
+    const url = window.URL.createObjectURL(blob);
+
+    // Create a link and trigger the download
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'complete-checkup-result.pdf'); // Set the file name
+    document.body.appendChild(link);
+    link.click();
+
+    // Clean up
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+  })
+
+}
 </script>
 <template>
   <div>
@@ -152,9 +202,19 @@ const formateData = (d) => {
                                         leave-active-class="shrink-leave-active" leave-from-class="shrink-leave-from"
                                         leave-to-class="shrink-leave-to">
                                         <DisclosurePanel class="px-4 pt-4 pb-2 text-sm text-gray-500 bg-rose-200">
-                                          <div class="flex flex-wrap gap-3">
+                                          <!-- <div class="flex flex-wrap gap-3">
                                             <div class="rounded-lg overflow-hidden" v-for="vid in problem.extra
                                               .youtube">
+                                              <iframe :src="vid"> </iframe>
+                                            </div>
+                                          </div> -->
+                                          <div class="flex flex-wrap gap-3">
+                                            <div v-show="problem.id != 11" class="rounded-lg overflow-hidden"
+                                              v-for="vid in problem.extra.youtube">
+                                              <iframe :src="vid"> </iframe>
+                                            </div>
+                                            <div v-show="problem.id == 11" class="rounded-lg overflow-hidden"
+                                              v-for="vid in cavityVideo">
                                               <iframe :src="vid"> </iframe>
                                             </div>
                                           </div>
@@ -199,8 +259,7 @@ const formateData = (d) => {
         </div>
         <div class="bg-white">
           <div class="px-0 md:px-5 pb-4">
-
-            <div v-show="problems.value.length > 0" class="w-full flex justify-center py-4">
+            <div v-show="data.length > 0" class="w-full flex justify-center py-4">
               <button @click="printPdf" class="bg-red-500 text-white text-md p-2 rounded-lg mt-4 text-center">Download
                 PDF</button>
             </div>
