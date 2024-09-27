@@ -74,7 +74,7 @@ async function printPdf() {
     // Create a link and trigger the download
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', 'detection-result.pdf'); // Set the file name
+    link.setAttribute('download', 'instant-checkup-report.pdf'); // Set the file name
     document.body.appendChild(link);
     link.click();
 
