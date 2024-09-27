@@ -122,11 +122,11 @@ async function printPdf() {
           <Icon @click="router.push({ path: '/checkup/complete' })" class="text-white" height="25px" width="25px"
             name="material-symbols:arrow-back-rounded" />
         </button>
-        <a href="/checkup/complete/detection-result-pdf" class="absolute right-20 top-20 z-10">
+        <!-- <a href="/checkup/complete/detection-result-pdf" class="absolute right-20 top-20 z-10">
           <button class="bg-gray-500 text-white rounded-full h-10 w-10 flex items-center justify-center">
             <Icon name="pepicons-print:printer" class="h-5 w-5 text-white" />
           </button>
-        </a>
+        </a> -->
 
         <div v-for="(data, index) in formattedData" :key="index">
           <div class="bg-white rounded-md overflow-hidden my-5 px-4 relative">
