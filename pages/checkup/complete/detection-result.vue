@@ -21,6 +21,7 @@ const configg = useRuntimeConfig();
 const domainStore = useDomainStore();
 const isOpen = ref(false);
 const viewImage = ref(null);
+const showPrintPdf = ref(true);
 const cavityVideo = ref([
   "https://www.youtube.com/embed/iKaKvjtzDtI",
   "https://www.youtube.com/embed/ND4ojJ4mUfU",
@@ -61,7 +62,6 @@ onMounted(() => {
     formattedData.value.push(formateData(d));
   });
 
-  console.log(formattedData.value);
 
 });
 
@@ -259,7 +259,7 @@ async function printPdf() {
         </div>
         <div class="bg-white">
           <div class="px-0 md:px-5 pb-4">
-            <div v-show="data.length > 0" class="w-full flex justify-center py-4">
+            <div v-show="data.length > 4" class="w-full flex justify-center py-4">
               <button @click="printPdf" class="bg-red-500 text-white text-md p-2 rounded-lg mt-4 text-center">Download
                 PDF</button>
             </div>
