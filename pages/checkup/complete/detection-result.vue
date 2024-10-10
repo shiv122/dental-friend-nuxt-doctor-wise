@@ -80,10 +80,10 @@ async function printPdf() {
 
   const image = [
     formattedData.value[0].image,
-    formattedData.value[1].image,
-    formattedData.value[2].image,
-    formattedData.value[3].image,
-    formattedData.value[4].image,
+    formattedData.value[1]?.image ?? "",
+    formattedData.value[2]?.image ?? "",
+    formattedData.value[3]?.image ?? "",
+    formattedData.value[4]?.image ?? "",
   ]
 
   console.log(formattedData.value);
@@ -259,7 +259,11 @@ async function printPdf() {
         </div>
         <div class="bg-white">
           <div class="px-0 md:px-5 pb-4">
-            <div v-show="data.length > 4" class="w-full flex justify-center py-4">
+            <!-- <div v-show="data.length > 4" class="w-full flex justify-center py-4">
+              <button @click="printPdf" class="bg-red-500 text-white text-md p-2 rounded-lg mt-4 text-center">Download
+                PDF</button>
+            </div> -->
+            <div class="w-full flex justify-center py-4">
               <button @click="printPdf" class="bg-red-500 text-white text-md p-2 rounded-lg mt-4 text-center">Download
                 PDF</button>
             </div>
