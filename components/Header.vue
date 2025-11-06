@@ -14,7 +14,7 @@ nuxtApp.hook("page:finish", () => {
     : null;
 
   logo.value = config.value?.logo
-    ? configg.public.baseUrl + "/" + config.value.logo
+    ? config.value.logo
     : "";
   //images/logo.png
   siteName.value = config.value?.site_name ?? "Dental Friend";
