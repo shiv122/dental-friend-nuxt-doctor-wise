@@ -51,10 +51,11 @@ const formattedData = ref([]);
 const validIds = ref([]);
 const baseUrl = ref(null);
 
-onMounted(() => {
+onMounted(async () => {
   baseUrl.value = configg.public.apiBase;
   if (!domainStore.data) {
     router.push({ path: "404" });
+    return;
   }
   data.value = detectionStore.data;
   validIds.value = JSON.parse(domainStore.data.configs).allowed_conditions;
@@ -62,10 +63,12 @@ onMounted(() => {
     formattedData.value.push(formateData(d));
   });
 
-  // Send PDF to email after 2 seconds
-  setTimeout(() => {
+  // Wait for Vue to finish updating, then send PDF to email
+  await nextTick();
+  
+  if (formattedData.value.length > 0 && baseUrl.value) {
     sendPdfToEmail();
-  }, 2000);
+  }
 });
 
 const formateData = (d) => {
@@ -129,21 +132,19 @@ async function sendPdfToEmail() {
     formattedData.value[4]?.image ?? "",
   ];
 
-  console.log(formattedData.value);
-  await axios
-    .post(
+  console.log("Sending PDF to email...", formattedData.value);
+  try {
+    const response = await axios.post(
       baseUrl.value + "/basic/send-complete-checkup-pdf-to-email",
       {
         data: formattedData.value,
         image: image,
-      },
-      {
-        responseType: "blob",
       }
-    )
-    .then((response) => {
-      console.log(response);
-    });
+    );
+    console.log("PDF sent successfully:", response);
+  } catch (error) {
+    console.error("Error sending PDF to email:", error);
+  }
 }
 </script>
 <template>
