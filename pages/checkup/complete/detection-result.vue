@@ -50,17 +50,8 @@ if (detectionStore.data === null) {
 const formattedData = ref([]);
 const validIds = ref([]);
 const baseUrl = ref(null);
-const emailSent = ref(false);
 
-// Watch for formattedData to be populated, then send email
-watch(formattedData, (newValue) => {
-  if (newValue.length > 0 && baseUrl.value && !emailSent.value) {
-    emailSent.value = true;
-    sendPdfToEmail();
-  }
-}, { deep: true });
-
-onMounted(async () => {
+onMounted(() => {
   baseUrl.value = configg.public.apiBase;
   
   if (!domainStore.data) {
@@ -79,6 +70,11 @@ onMounted(async () => {
   data.value.map(function (d) {
     formattedData.value.push(formateData(d));
   });
+  
+  // Call sendPdfToEmail directly after data is processed
+  if (formattedData.value.length > 0) {
+    sendPdfToEmail();
+  }
 });
 
 const formateData = (d) => {
